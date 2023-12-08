@@ -1,30 +1,18 @@
 #include "main.h"
 #include "button.h"
 
-uint16_t btArr[3] = {BT0_Pin, BT1_Pin, BT2_Pin};
-GPIO_TypeDef *btPort[3] = {BT0_GPIO_Port, BT1_GPIO_Port, BT2_GPIO_Port};
+uint16_t btArr[NUM_BUTTONS] = {A1_BT1_Pin, A2_BT2_Pin, A3_BT3_Pin, A0_PD_BT_Pin};
+GPIO_TypeDef *btPort[NUM_BUTTONS] = {A1_BT1_GPIO_Port, A2_BT2_GPIO_Port, A3_BT3_GPIO_Port, A0_PD_BT_GPIO_Port};
 
 int KeyReg0[NUM_BUTTONS] = {NORMAL_STATE};
 int KeyReg1[NUM_BUTTONS] = {NORMAL_STATE};
 int KeyReg2[NUM_BUTTONS] = {NORMAL_STATE};
 int KeyReg3[NUM_BUTTONS] = {NORMAL_STATE};
 
-int TimeOutForKeyPress[NUM_BUTTONS] =  {500};
+int TimeOutForKeyPress[NUM_BUTTONS] = {200};
 int BT_flag[NUM_BUTTONS] = {0};
+int BT_hold_flag[NUM_BUTTONS] = {0};
 
-int isBTPressed(int index){
-	if (BT_flag[index] == 1){
-		BT_flag[index] = 0;
-		return 1;
-	}
-	return 0;
-}
-
-void subKeyProcess(int index){
-	//TODO
-	//HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
-	BT_flag[index] = 1;
-}
 
 void getKeyInput(){
 	for (int i = 0; i < NUM_BUTTONS; i++){
@@ -38,14 +26,13 @@ void getKeyInput(){
 				KeyReg3[i] = KeyReg2[i];
 				if (KeyReg3[i] == PRESSED_STATE){
 						TimeOutForKeyPress[i] = 200;
-						subKeyProcess(i);
-				}
+						BT_flag[i] = 1;				}
 			}else{
 				TimeOutForKeyPress[i]--;
 				if (TimeOutForKeyPress[i] == 0){
 					TimeOutForKeyPress[i] = 200;
 					if(KeyReg0[i] == PRESSED_STATE){
-						subKeyProcess(i);
+						BT_hold_flag[i] = 1;
 					}
 				}
 			}
@@ -53,3 +40,19 @@ void getKeyInput(){
 	}
 }
 
+
+int isBTPressed(int index){
+	if(BT_flag[index] == 1){
+		BT_flag[index] = 0;
+		return 1;
+	}
+	return 0;
+}
+
+int isBTHold(int index){
+	if(BT_hold_flag[index] == 1){
+		BT_hold_flag[index] = 0;
+		return 1;
+	}
+	return 0;
+}

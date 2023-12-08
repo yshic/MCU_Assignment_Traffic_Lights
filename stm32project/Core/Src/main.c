@@ -18,12 +18,17 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "fsm_automatic.h"
+#include "fsm_manual.h"
+#include "fsm_tuning.h"
 #include "software_timer.h"
 #include "global.h"
 #include "button.h"
 #include "scheduler.h"
+#include "buzzer.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -100,15 +105,27 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
+  buzzer_init(TIM3);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  status = INIT;
+
+  SCH_Add_Task(fsm_automatic_run, 0, 1);
+  SCH_Add_Task(fsm_manual_run, 0, 1);
+  SCH_Add_Task(fsm_tuning_run, 0, 1);
+  SCH_Add_Task(getKeyInput, 0, 1);
+  SCH_Add_Task(timerRun, 0, 1);
+  SCH_Add_Task(buzzer_run, 0, 1);
 
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  SCH_Dispatch_Tasks();
+	  //fsm_automatic_run();
+	  //fsm_manual_run();
+	  //fsm_tuning_run();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -303,13 +320,13 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pins : A0_PD_BT_Pin A1_BT1_Pin A2_BT2_Pin */
   GPIO_InitStruct.Pin = A0_PD_BT_Pin|A1_BT1_Pin|A2_BT2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : A3_BT3_Pin */
   GPIO_InitStruct.Pin = A3_BT3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(A3_BT3_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : D6_PDL_LED1_Pin D3_TF1_LED2_Pin D5_TF2_LED2_Pin D4_TF2_LED1_Pin */
@@ -332,7 +349,10 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-
+	SCH_Update();
+	//getKeyInput();
+	//timerRun();
+	//buzzer_run();
 }
 /* USER CODE END 4 */
 
