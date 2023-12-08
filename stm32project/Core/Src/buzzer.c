@@ -2,6 +2,7 @@
 #include "main.h"
 #include "global.h"
 #include "software_timer.h"
+#include "pitches.h"
 
 uint8_t idx = 0;
 uint32_t tempPSC = 0;
@@ -18,7 +19,7 @@ void buzzer_init(TIM_TypeDef *tim){
 
 void buzzer_sound(TIM_HandleTypeDef htim ,int volume){
 	TIM_CCxChannelCmd(TIM3, TIM_CHANNEL_1, TIM_CCx_ENABLE);
-	__HAL_TIM_SET_COMPARE(&htim,TIM_CHANNEL_1,volume);
+	__HAL_TIM_SET_COMPARE(&htim,TIM_CHANNEL_1,volume + idx);
 	TIM3->PSC = 64000/ped_green[idx%8];
 	idx++;
 }
