@@ -26,13 +26,22 @@ void getKeyInput(){
 				KeyReg3[i] = KeyReg2[i];
 				if (KeyReg3[i] == PRESSED_STATE){
 						TimeOutForKeyPress[i] = 200;
-						BT_flag[i] = 1;				}
-			}else{
+						BT_flag[i] = 1;
+				}
+				else{
+					TimeOutForKeyPress[i] = 200;
+					BT_flag[i] = 0;
+				}
+			}
+			else{
 				TimeOutForKeyPress[i]--;
 				if (TimeOutForKeyPress[i] == 0){
 					TimeOutForKeyPress[i] = 200;
 					if(KeyReg0[i] == PRESSED_STATE){
 						BT_hold_flag[i] = 1;
+					}
+					else{
+						BT_hold_flag[i] = 0;
 					}
 				}
 			}
