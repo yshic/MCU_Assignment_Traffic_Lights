@@ -1,4 +1,4 @@
-../Core/Src/buzzer.c:14:6:buzzer_init	1
-../Core/Src/buzzer.c:19:6:buzzer_sound	1
-../Core/Src/buzzer.c:26:6:buzzer_run	5
-../Core/Src/buzzer.c:45:6:buzzer_set	5
+../Core/Src/buzzer.c:15:6:buzzer_init	1
+../Core/Src/buzzer.c:20:6:buzzer_sound	1
+../Core/Src/buzzer.c:27:6:buzzer_run	5
+../Core/Src/buzzer.c:46:6:buzzer_set	5
