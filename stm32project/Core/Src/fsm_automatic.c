@@ -70,6 +70,11 @@ void fsm_automatic_run(){
 			HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!PEDESTRIAN_GREEN#\r\n"), 1000);
 			buzzer_set(1);
 		}
+		if(isBTHold(3) == 1){
+			isPed = 1;
+			setTimer(PEDESTRIAN_TIMER, 1);
+			buzzer_set(1);
+		}
 		if(isPed == 1){
 			controlPedLights(GREEN);
 		}
@@ -114,6 +119,10 @@ void fsm_automatic_run(){
 			isPed = 1;
 			setTimer(PEDESTRIAN_TIMER, 1);
 			HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!PEDESTRIAN_RED#\r\n"), 1000);
+		}
+		if(isBTHold(3) == 1){
+			isPed = 1;
+			setTimer(PEDESTRIAN_TIMER, 1);
 		}
 		if(isPed == 1){
 			controlPedLights(RED);
@@ -164,6 +173,10 @@ void fsm_automatic_run(){
 			setTimer(PEDESTRIAN_TIMER, 1);
 			HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!PEDESTRIAN_RED#\r\n"), 1000);
 		}
+		if(isBTHold(3) == 1){
+			isPed = 1;
+			setTimer(PEDESTRIAN_TIMER, 1);
+		}
 		if(isPed == 1){
 			controlPedLights(RED);
 		}
@@ -213,6 +226,10 @@ void fsm_automatic_run(){
 			isPed = 1;
 			setTimer(PEDESTRIAN_TIMER, 1);
 			HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!PEDESTRIAN_YELLOW#\r\n"), 1000);
+		}
+		if(isBTHold(3) == 1){
+			isPed = 1;
+			setTimer(PEDESTRIAN_TIMER, 1);
 		}
 		if(isPed == 1){
 			controlPedLights(YELLOW);
