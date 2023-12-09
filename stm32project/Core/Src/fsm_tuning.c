@@ -11,13 +11,42 @@ int greenTemp = 1;
 int yellowTemp = 1;
 
 void ledBalance(){
-	if(red == (green + yellow)) return;
+	if(red == (green + yellow)){
+		int buffer_red1 = red / 10;
+		int buffer_red2 = red % 10;
+		int buffer_yellow1 = yellow / 10;
+		int buffer_yellow2 = yellow % 10;
+		int buffer_green1 = green / 10;
+		int buffer_green2 = green % 10;
+		HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!AFTER_TUNING#\r\n"), 1000);
+		HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!7SEG:%d%d#RED\r\n", buffer_red1, buffer_red2), 1000);
+		HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!7SEG:%d%d#YELLOW\r\n", buffer_yellow1, buffer_yellow2), 1000);
+		HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!7SEG:%d%d#GREEN\r\n", buffer_green1, buffer_green2), 1000);
+		return;
+	}
 	else if(red > (green + yellow)){
 		red = green + yellow;
+		int buffer1 = red / 10;
+		int buffer2 = red % 10;
+		HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!7SEG:%d%d#BALANCED_RED\r\n", buffer1, buffer2), 1000);
 	}
 	else{
 		yellow = red - green;
+		int buffer1 = red / 10;
+		int buffer2 = red % 10;
+		HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!7SEG:%d%d#BALANCED_YELLOW\r\n", buffer1, buffer2), 1000);
 	}
+	int buffer_red1 = red / 10;
+	int buffer_red2 = red % 10;
+	int buffer_yellow1 = yellow / 10;
+	int buffer_yellow2 = yellow % 10;
+	int buffer_green1 = green / 10;
+	int buffer_green2 = green % 10;
+	HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!AFTER_TUNING#\r\n"), 1000);
+	HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!7SEG:%d%d#RED\r\n", buffer_red1, buffer_red2), 1000);
+	HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!7SEG:%d%d#YELLOW\r\n", buffer_yellow1, buffer_yellow2), 1000);
+	HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!7SEG:%d%d#GREEN\r\n", buffer_green1, buffer_green2), 1000);
+	return;
 }
 
 //Used timers: timer[3]: led blinking
@@ -77,7 +106,6 @@ void fsm_tuning_run(){
 			setTimer(250, 3);
 		}
 		if(isBTPressed(0) == 1){
-			ledBalance();
 			status = TUNING_RED;
 			greenTemp = 1;
 			clearTrafficLights();
