@@ -6,7 +6,8 @@
 #define RED 					100
 #define GREEN					101
 #define YELLOW					102
-#define OFF						103
+#define YELLOW_BLINK			103
+#define OFF						104
 #define PEDESTRIAN_TIMER		8000
 
 #define MAX_MESSAGE_LENGTH		50

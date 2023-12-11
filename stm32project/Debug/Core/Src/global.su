@@ -1,6 +1,6 @@
 ../Core/Src/global.c:10:6:controlTrafficLights	16	static
 ../Core/Src/global.c:51:6:controlPedLights	16	static
-../Core/Src/global.c:74:6:clearTrafficLights	8	static
-../Core/Src/global.c:84:6:toggleRedLED	8	static
-../Core/Src/global.c:92:6:toggleGreenLED	8	static
-../Core/Src/global.c:100:6:toggleYellowLED	8	static
+../Core/Src/global.c:78:6:clearTrafficLights	8	static
+../Core/Src/global.c:88:6:toggleRedLED	8	static
+../Core/Src/global.c:96:6:toggleGreenLED	8	static
+../Core/Src/global.c:104:6:toggleYellowLED	8	static

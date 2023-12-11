@@ -10,7 +10,7 @@ void setTimer(int duration, int id);
 
 void timerRun();
 
-void setTimerFlag(int id, int value);
+void resetAllTimers();
 
 
 #endif /* INC_SOFTWARE_TIMER_H_ */

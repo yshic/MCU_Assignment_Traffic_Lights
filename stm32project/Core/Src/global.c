@@ -62,6 +62,10 @@ void controlPedLights(int color){
 		HAL_GPIO_WritePin(D6_PDL_LED1_GPIO_Port, D6_PDL_LED1_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(D7_PDL_LED2_GPIO_Port, D7_PDL_LED2_Pin, GPIO_PIN_SET);
 		break;
+	case YELLOW_BLINK:
+		HAL_GPIO_TogglePin(D6_PDL_LED1_GPIO_Port, D6_PDL_LED1_Pin);
+		HAL_GPIO_TogglePin(D7_PDL_LED2_GPIO_Port, D7_PDL_LED2_Pin);
+		break;
 	case OFF: // OFF
 		HAL_GPIO_WritePin(D6_PDL_LED1_GPIO_Port, D6_PDL_LED1_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(D7_PDL_LED2_GPIO_Port, D7_PDL_LED2_Pin, GPIO_PIN_RESET);

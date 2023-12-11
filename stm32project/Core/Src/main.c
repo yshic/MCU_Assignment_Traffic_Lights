@@ -106,6 +106,7 @@ int main(void)
   HAL_TIM_Base_Start_IT(&htim2);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
   buzzer_init(TIM3);
+  SCH_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -121,11 +122,12 @@ int main(void)
 
   while (1)
   {
-    /* USER CODE END WHILE */
 	  SCH_Dispatch_Tasks();
 	  //fsm_automatic_run();
 	  //fsm_manual_run();
 	  //fsm_tuning_run();
+    /* USER CODE END WHILE */
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

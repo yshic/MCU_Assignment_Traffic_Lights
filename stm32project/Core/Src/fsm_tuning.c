@@ -10,6 +10,8 @@ int redTemp = 1;
 int greenTemp = 1;
 int yellowTemp = 1;
 
+//Used timers: timer[3]: led blinking
+
 void ledBalance(){
 	if(red == (green + yellow)){
 		int buffer_red1 = red / 10;
@@ -49,12 +51,11 @@ void ledBalance(){
 	return;
 }
 
-//Used timers: timer[3]: led blinking
 void fsm_tuning_run(){
 	switch(status){
 	case TUNING_INIT:
 		status = TUNING_RED;
-		setTimer(250, 3);		//timer for led blinking
+		setTimer(10, 3);		//timer for led blinking
 		HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!TUNING#\r\n"), 1000);
 		int buffer1 = redTemp / 10;
 		int buffer2 = redTemp % 10;
@@ -78,6 +79,7 @@ void fsm_tuning_run(){
 			redTemp = 1; greenTemp = 1; yellowTemp = 1;
 			ledBalance();
 			clearTrafficLights();
+			resetAllTimers();
 		}
 		if(isBTPressed(1) == 1){
 			redTemp++;
@@ -118,6 +120,7 @@ void fsm_tuning_run(){
 			redTemp = 1; greenTemp = 1; yellowTemp = 1;
 			ledBalance();
 			clearTrafficLights();
+			resetAllTimers();
 		}
 		if(isBTPressed(1) == 1){
 			greenTemp++;
@@ -158,6 +161,7 @@ void fsm_tuning_run(){
 			redTemp = 1; greenTemp = 1; yellowTemp = 1;
 			ledBalance();
 			clearTrafficLights();
+			resetAllTimers();
 		}
 		if(isBTPressed(1) == 1){
 			yellowTemp++;

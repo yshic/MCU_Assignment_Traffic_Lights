@@ -9,7 +9,7 @@ void setTimer(int duration, int id){
 }
 void timerRun(){
 	for(int i = 0; i < MAX_TIMERS; i++){
-		if(timer_counter[i] > 0 && timer_flag[i] == 0){
+		if(timer_counter[i] > 0){
 			timer_counter[i]--;
 			if(timer_counter[i] <= 0){
 				timer_flag[i] = 1;
@@ -18,6 +18,9 @@ void timerRun(){
 	}
 }
 
-void setTimerFlag(int id, int value){
-	timer_flag[id] = value;
+void resetAllTimers(){
+	for(int i = 0; i < MAX_TIMERS; i++){
+		timer_counter[i] = 0;
+		timer_flag[i] = 0;
+	}
 }

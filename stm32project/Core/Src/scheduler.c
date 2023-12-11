@@ -19,7 +19,6 @@ void SCH_Init(void){
         SCH_tasks_G[i].Delay = 0;
         SCH_tasks_G[i].Period = 0;
         SCH_tasks_G[i].RunMe = 0;
-
         SCH_tasks_G[i].TaskID = -1;
     }
 }
@@ -110,7 +109,7 @@ uint8_t SCH_Delete_Task(uint32_t taskID){
 			}
 		}
 	}
-	return Return_code;
+	return Return_code; // return status
 }
 
 void SCH_Dispatch_Tasks(void){

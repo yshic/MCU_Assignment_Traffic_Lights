@@ -6,6 +6,7 @@
 #define NUM_BUTTONS 4
 
 extern int BT_flag[NUM_BUTTONS];
+extern int BT_press_flag[NUM_BUTTONS];
 extern int BT_hold_flag[NUM_BUTTONS];
 
 void getKeyInput();

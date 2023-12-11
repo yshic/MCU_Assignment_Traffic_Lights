@@ -1,6 +1,6 @@
 ../Core/Src/global.c:10:6:controlTrafficLights	9
-../Core/Src/global.c:51:6:controlPedLights	5
-../Core/Src/global.c:74:6:clearTrafficLights	1
-../Core/Src/global.c:84:6:toggleRedLED	1
-../Core/Src/global.c:92:6:toggleGreenLED	1
-../Core/Src/global.c:100:6:toggleYellowLED	1
+../Core/Src/global.c:51:6:controlPedLights	6
+../Core/Src/global.c:78:6:clearTrafficLights	1
+../Core/Src/global.c:88:6:toggleRedLED	1
+../Core/Src/global.c:96:6:toggleGreenLED	1
+../Core/Src/global.c:104:6:toggleYellowLED	1
