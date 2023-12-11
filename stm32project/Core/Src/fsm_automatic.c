@@ -64,7 +64,6 @@ void fsm_automatic_run(){
 		if(isBTPressed(0) == 1){
 			status = MANUAL_INIT;
 			clearTrafficLights();
-			resetAllTimers();
 			if(isPed == 1){
 				isPed = 0;
 				buzzer_set(0);
@@ -117,10 +116,10 @@ void fsm_automatic_run(){
 		if(isBTPressed(0) == 1){
 			status = MANUAL_INIT;
 			clearTrafficLights();
-			resetAllTimers();
 			if(isPed == 1){
 				isPed = 0;
 				controlPedLights(OFF);
+				buzzer_set(0);
 				HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!PEDESTRIAN_OFF#\r\n"), 1000);
 			}
 		}
@@ -171,10 +170,10 @@ void fsm_automatic_run(){
 		if(isBTPressed(0) == 1){
 			status = MANUAL_INIT;
 			clearTrafficLights();
-			resetAllTimers();
 			if(isPed == 1){
 				isPed = 0;
 				controlPedLights(OFF);
+				buzzer_set(0);
 				HAL_UART_Transmit(&huart2, (void *)message, sprintf(message, "!PEDESTRIAN_OFF#\r\n"), 1000);
 			}
 		}
@@ -231,7 +230,6 @@ void fsm_automatic_run(){
 		if(isBTPressed(0) == 1){
 			status = MANUAL_INIT;
 			clearTrafficLights();
-			resetAllTimers();
 			if(isPed == 1){
 				isPed = 0;
 				buzzer_set(0);

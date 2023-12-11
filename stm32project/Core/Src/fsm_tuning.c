@@ -79,7 +79,6 @@ void fsm_tuning_run(){
 			redTemp = 1; greenTemp = 1; yellowTemp = 1;
 			ledBalance();
 			clearTrafficLights();
-			resetAllTimers();
 		}
 		if(isBTPressed(1) == 1){
 			redTemp++;
@@ -120,7 +119,6 @@ void fsm_tuning_run(){
 			redTemp = 1; greenTemp = 1; yellowTemp = 1;
 			ledBalance();
 			clearTrafficLights();
-			resetAllTimers();
 		}
 		if(isBTPressed(1) == 1){
 			greenTemp++;
@@ -161,7 +159,6 @@ void fsm_tuning_run(){
 			redTemp = 1; greenTemp = 1; yellowTemp = 1;
 			ledBalance();
 			clearTrafficLights();
-			resetAllTimers();
 		}
 		if(isBTPressed(1) == 1){
 			yellowTemp++;

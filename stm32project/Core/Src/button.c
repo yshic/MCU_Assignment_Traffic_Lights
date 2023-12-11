@@ -29,11 +29,9 @@ void getKeyInput(){
 						TimeOutForKeyPress[i] = 200;
 						BT_flag[i] = 1;
 				}
-				/*
 				else if(KeyReg3[i] == NORMAL_STATE && BT_flag[i] == 1){
 					BT_press_flag[i] = 1;
 				}
-				*/
 				else{
 					TimeOutForKeyPress[i] = 200;
 					BT_flag[i] = 0;
@@ -45,9 +43,10 @@ void getKeyInput(){
 					TimeOutForKeyPress[i] = 200;
 					if(KeyReg0[i] == PRESSED_STATE){
 						BT_hold_flag[i] = 1;
-						//BT_press_flag[i] = 0;
+						BT_flag[i] = 0;
 					}
 					else{
+						BT_flag[i] = 0;
 						BT_hold_flag[i] = 0;
 					}
 				}
@@ -58,8 +57,8 @@ void getKeyInput(){
 
 
 int isBTPressed(int index){
-	if(BT_flag[index] == 1 /*BT_press_flag[index] == 1*/){
-		BT_flag[index] = 0/*BT_press_flag[index] = 0*/;
+	if(BT_press_flag[index] == 1){
+		BT_press_flag[index] = 0;
 		return 1;
 	}
 	return 0;

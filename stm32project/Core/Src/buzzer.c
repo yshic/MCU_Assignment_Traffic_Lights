@@ -20,7 +20,7 @@ void buzzer_init(TIM_TypeDef *tim){
 void buzzer_sound(TIM_HandleTypeDef htim ,int volume){
 	TIM_CCxChannelCmd(TIM3, TIM_CHANNEL_1, TIM_CCx_ENABLE);
 	__HAL_TIM_SET_COMPARE(&htim,TIM_CHANNEL_1,volume + idx);
-	TIM3->PSC = 64000/ped_green[idx%8] /* -1 */;
+	TIM3->PSC = 64000/ped_green[idx%8] - 1;
 	idx++;
 }
 
@@ -32,11 +32,11 @@ void buzzer_run(){
 	}
 	if(timer_flag[4] == 1){
 		if(buzzer_state == 2){
-			buzzer_sound(htim3, 15);
+			buzzer_sound(htim3, 30);
 			setTimer(100, 4);
 		}
 		if(buzzer_state == 1){
-			buzzer_sound(htim3, 20);
+			buzzer_sound(htim3, 45);
 			setTimer(250, 4);
 		}
 	}

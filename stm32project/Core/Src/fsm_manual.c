@@ -27,7 +27,6 @@ void fsm_manual_run(){
 		if(isBTPressed(0) == 1){
 			status = TUNING_INIT;
 			clearTrafficLights();
-			resetAllTimers();
 			if(isPed == 1){
 				isPed = 0;
 				controlPedLights(OFF);
@@ -59,7 +58,6 @@ void fsm_manual_run(){
 		if(isBTPressed(0) == 1){
 			status = TUNING_INIT;
 			clearTrafficLights();
-			resetAllTimers();
 			if(isPed == 1){
 				isPed = 0;
 				controlPedLights(OFF);
@@ -91,7 +89,6 @@ void fsm_manual_run(){
 		if(isBTPressed(0) == 1){
 			status = TUNING_INIT;
 			clearTrafficLights();
-			resetAllTimers();
 			if(isPed == 1){
 				isPed = 0;
 				controlPedLights(OFF);
@@ -127,7 +124,6 @@ void fsm_manual_run(){
 		if(isBTPressed(0) == 1){
 			status = TUNING_INIT;
 			clearTrafficLights();
-			resetAllTimers();
 			if(isPed == 1){
 				isPed = 0;
 				controlPedLights(OFF);
